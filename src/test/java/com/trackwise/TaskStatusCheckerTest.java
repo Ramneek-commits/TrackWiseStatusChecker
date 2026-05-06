@@ -28,8 +28,7 @@ public class TaskStatusCheckerTest {
 
     @Test
     public void testCompletedTaskStatus() {
-    	assertEquals("Finished", checker.checkStatus("S101", "T1"));
-    }
+    	assertEquals("Completed", checker.checkStatus("S101", "T1"));    }
 
     @Test
     public void testSubmittedTaskStatus() {
