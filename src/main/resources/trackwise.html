@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>TrackWise Status Checker</title>
+</head>
+<body>
+
+<h1>TrackWise Status Checker</h1>
+
+<input type="text" id="studentId" placeholder="Student ID">
+<input type="text" id="taskId" placeholder="Task ID">
+
+<button id="checkButton" onclick="checkStatus()">Check Status</button>
+
+<h2 id="result">Result</h2>
+
+<script>
+function checkStatus() {
+    let studentId = document.getElementById("studentId").value.trim().toUpperCase();
+    let taskId = document.getElementById("taskId").value.trim().toUpperCase();
+    let result = document.getElementById("result");
+
+    if (studentId === "") {
+        result.innerText = "Student ID cannot be empty";
+        return;
+    }
+
+    if (taskId === "") {
+        result.innerText = "Task ID cannot be empty";
+        return;
+    }
+
+    if (!/^S\d{3}$/.test(studentId)) {
+        result.innerText = "Invalid Student ID";
+        return;
+    }
+
+    if (!/^T\d+$/.test(taskId)) {
+        result.innerText = "Invalid Task ID";
+        return;
+    }
+
+    let data = {
+        "S101-T1": "Completed",
+        "S101-T2": "Submitted",
+        "S102-T1": "Under Review",
+        "S103-T3": "Need Resubmission"
+    };
+
+    let key = studentId + "-" + taskId;
+
+    if (data[key]) {
+        result.innerText = data[key];
+    } else {
+        result.innerText = "Task record not found";
+    }
+}
+</script>
+
+</body>
+</html>
